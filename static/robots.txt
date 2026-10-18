@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Product pages are generated per barcode and have no server-rendered
+# content, so there is nothing useful to crawl under /product/.
+Disallow: /product/
+Disallow: /add/
+Disallow: /settings
