@@ -1,0 +1,269 @@
+/* ==========================================================================
+   IsItVegan design tokens — white and orange
+
+   Light-first. Surfaces are white on a warm off-white page, lifted by
+   hairline borders and soft shadows rather than by colour.
+
+   One deliberate decision: orange is reserved for interactive chrome —
+   buttons, the active nav item, links. It is never a verdict colour.
+   "Unclear" uses warm stone grey instead of amber, because amber sitting
+   next to an orange button reads as the same colour at a glance, and the
+   one thing this app cannot afford is a verdict the eye misreads.
+   ========================================================================== */
+
+:root {
+	/* Neutrals — warm-shifted so white never looks blue next to orange */
+	--bg: #fbf9f7;
+	--surface: #ffffff;
+	--surface-2: #ffffff;
+	--surface-3: #f4f1ee;
+	--border: #e9e4df;
+	--border-strong: #d6cfc8;
+
+	--text: #1c1917;
+	--text-2: #6b625b;
+	--text-3: #9c938b;
+
+	/* Accent — interactive only */
+	--accent: #ea580c;
+	--accent-ink: #ffffff;
+	--accent-soft: rgba(234, 88, 12, 0.1);
+	--accent-hover: #c2410c;
+
+	/* Verdicts — never orange, so they can never be mistaken for a button */
+	--yes: #15803d;
+	--yes-soft: rgba(21, 128, 61, 0.1);
+	--no: #dc2626;
+	--no-soft: rgba(220, 38, 38, 0.09);
+	--maybe: #78716c;
+	--maybe-soft: rgba(120, 113, 108, 0.1);
+
+	/* Elevation */
+	--shadow-1: 0 1px 2px rgba(28, 25, 23, 0.05);
+	--shadow-2: 0 4px 16px rgba(28, 25, 23, 0.07);
+	--shadow-3: 0 12px 40px rgba(28, 25, 23, 0.1);
+
+	/* Shape */
+	--r-sm: 10px;
+	--r-md: 14px;
+	--r-lg: 20px;
+	--r-xl: 28px;
+	--r-full: 999px;
+
+	/* Rhythm */
+	--sp-1: 4px;
+	--sp-2: 8px;
+	--sp-3: 12px;
+	--sp-4: 16px;
+	--sp-5: 24px;
+	--sp-6: 32px;
+	--sp-7: 48px;
+
+	--font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Inter,
+		system-ui, sans-serif;
+	--mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+
+	--ease: cubic-bezier(0.32, 0.72, 0, 1);
+	--max-w: 560px;
+}
+
+/* Dark mode is a courtesy, not the primary design — people check
+   ingredients in shops, which are lit like operating theatres. */
+:root[data-theme='dark'] {
+	--bg: #16130f;
+	--surface: #1f1b17;
+	--surface-2: #1f1b17;
+	--surface-3: #2b2621;
+	--border: #363029;
+	--border-strong: #4a4238;
+
+	--text: #f5f1ec;
+	--text-2: #a8a098;
+	--text-3: #756d65;
+
+	--accent: #fb923c;
+	--accent-ink: #431407;
+	--accent-soft: rgba(251, 146, 60, 0.14);
+	--accent-hover: #fdba74;
+
+	--yes: #4ade80;
+	--yes-soft: rgba(74, 222, 128, 0.13);
+	--no: #fb7185;
+	--no-soft: rgba(251, 113, 133, 0.13);
+	--maybe: #a8a29e;
+	--maybe-soft: rgba(168, 162, 158, 0.13);
+
+	--shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
+	--shadow-2: 0 4px 16px rgba(0, 0, 0, 0.35);
+	--shadow-3: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--bg: #16130f;
+		--surface: #1f1b17;
+		--surface-2: #1f1b17;
+		--surface-3: #2b2621;
+		--border: #363029;
+		--border-strong: #4a4238;
+		--text: #f5f1ec;
+		--text-2: #a8a098;
+		--text-3: #756d65;
+		--accent: #fb923c;
+		--accent-ink: #431407;
+		--accent-soft: rgba(251, 146, 60, 0.14);
+		--accent-hover: #fdba74;
+		--yes: #4ade80;
+		--yes-soft: rgba(74, 222, 128, 0.13);
+		--no: #fb7185;
+		--no-soft: rgba(251, 113, 133, 0.13);
+		--maybe: #a8a29e;
+		--maybe-soft: rgba(168, 162, 158, 0.13);
+		--shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
+		--shadow-2: 0 4px 16px rgba(0, 0, 0, 0.35);
+		--shadow-3: 0 12px 40px rgba(0, 0, 0, 0.45);
+	}
+}
+
+/* ========================================================================== */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	background: var(--bg);
+}
+
+body {
+	margin: 0;
+	font-family: var(--font);
+	background: var(--bg);
+	color: var(--text);
+	font-size: 16px;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	overscroll-behavior-y: none;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	font-weight: 650;
+	letter-spacing: -0.02em;
+	line-height: 1.2;
+}
+
+h1 { font-size: 28px; letter-spacing: -0.03em; }
+h2 { font-size: 20px; }
+h3 { font-size: 16px; }
+
+p { margin: 0; }
+
+a { color: var(--accent); text-decoration: none; }
+
+button {
+	font: inherit;
+	cursor: pointer;
+	border: none;
+	background: none;
+	color: inherit;
+	-webkit-tap-highlight-color: transparent;
+}
+
+input, textarea, select {
+	font: inherit;
+	color: inherit;
+	font-size: 16px; /* 16px minimum or iOS zooms on focus */
+}
+
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+/* ---------- Shared primitives ---------- */
+
+.page {
+	max-width: var(--max-w);
+	margin: 0 auto;
+	padding: var(--sp-4);
+	padding-bottom: calc(var(--sp-7) + env(safe-area-inset-bottom));
+}
+
+.card {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--r-lg);
+	box-shadow: var(--shadow-1);
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--sp-2);
+	min-height: 50px;
+	padding: 0 var(--sp-5);
+	border-radius: var(--r-full);
+	font-weight: 600;
+	font-size: 16px;
+	letter-spacing: -0.01em;
+	transition: transform 0.15s var(--ease), opacity 0.15s var(--ease),
+		background 0.15s var(--ease);
+	width: 100%;
+}
+
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-secondary { background: var(--surface-3); color: var(--text); }
+.btn-ghost {
+	background: transparent;
+	color: var(--text-2);
+	border: 1px solid var(--border);
+}
+
+.field {
+	width: 100%;
+	padding: var(--sp-3) var(--sp-4);
+	background: var(--surface-2);
+	border: 1px solid var(--border);
+	border-radius: var(--r-md);
+	transition: border-color 0.15s var(--ease);
+}
+
+.field:focus {
+	outline: none;
+	border-color: var(--accent);
+}
+
+.label {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--text-2);
+	margin-bottom: var(--sp-2);
+	letter-spacing: -0.005em;
+}
+
+.muted { color: var(--text-2); }
+.small { font-size: 14px; }
+.tiny  { font-size: 13px; }
+.mono  { font-family: var(--mono); font-size: 13px; }
+
+.stack   { display: flex; flex-direction: column; gap: var(--sp-4); }
+.stack-2 { display: flex; flex-direction: column; gap: var(--sp-2); }
+.row     { display: flex; align-items: center; gap: var(--sp-3); }
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
